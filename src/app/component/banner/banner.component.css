@@ -1,0 +1,54 @@
+
+
+#banner-container{
+    position: relative;
+    width: 100%;
+    /* height: calc(50px + 60vw); */
+    height: auto;
+    margin-bottom: 20px;
+    
+}
+
+#imagenBanner{
+    position: relative;
+    width: 100%;
+    /* height:calc(2% + 42vw); */
+    height:45vw;
+    background-image: url('/assets/imagenBanner.jpg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-top-left-radius: 32px;
+    border-top-right-radius: 32px;
+}
+
+#perfil{
+    position: absolute;
+    top: 33vw;
+}
+#imagenPerfil{
+    /* position: absolute; */
+    /* top: calc(9% + 36vw); */
+    /* margin-top: 1px; */
+    width: calc(1px + 15vw);
+    height: calc(1px + 15vw); 
+    background-image: url('/assets/fotoPerfilII.jpg');
+    background-size:contain;
+    background-repeat: repeat;
+    border-radius: 50%;
+}
+
+#descripPerfil{
+    margin-top: 2vw ;
+    margin-bottom: 20px;
+}
+#nombrePerfil{
+    margin-top: 10px;
+    font-size: calc(1px  + 3vw);
+    font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
+}
+#descripPerfil1, #descripPerfil2{
+    font-size: calc(3px  + 1vw);
+    font-family: 'Open Sans', sans-serif;
+}
+
