@@ -1,21 +1,34 @@
 
-
-<header class="toolbar">
+  <nav class="navbar navbar-expand-sm ">
 
     <div id="logoArg" >
         <a href=""><img src={{logoArg}} alt=""></a>
     </div>
-    <span>
+
+    <span id="titulo">
         Argentina Programa
     </span>
+
     <div class="spacer"></div>
 
-    <div id="logoGit">
-        <a href=""><img src={{logoGit}} alt=""></a>
-    </div>
+    <button id="btn-toggler" class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"  aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span id="lines" class="navbar-toggler-icon"></span>
+    </button>
 
-    <div id="botonLogin">
-        <button class="btn btn-warning" id="">Log In</button>
+    <div class="collapse navbar-collapse"  id="navbarSupportedContent" >
+      <ul class="navbar-nav" >
+        <li id="logoLink" class="nav-item">
+          <a href=""><img src={{logoLinkedIn}} alt=""></a>
+        </li>
+        <li id="logoGit" class="nav-item">
+            <a href=""><img src={{logoGit}} alt=""></a>
+        </li>
+        <li id="botonLogin" class="nav-item">
+            <button class="btn btn-warning" id="">Log In</button>
+        </li>
+      </ul>
     </div>
+    
+</nav>
 
-</header>
+<!-- (click)="toggleState()"  //  [ngClass]="{ 'collapse': isCollapse  }" -->

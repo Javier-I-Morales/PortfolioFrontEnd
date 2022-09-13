@@ -2,53 +2,110 @@
 
 #banner-container{
     position: relative;
-    width: 100%;
-    /* height: calc(50px + 60vw); */
+    /* width: 100%; */
     height: auto;
     margin-bottom: 20px;
-    
 }
 
 #imagenBanner{
     position: relative;
     width: 100%;
-    /* height:calc(2% + 42vw); */
-    height:45vw;
+    min-height: 500px;
     background-image: url('/assets/imagenBanner.jpg');
+    background-position: center;
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     border-top-left-radius: 32px;
     border-top-right-radius: 32px;
+    /* overflow:hidden; */
 }
 
 #perfil{
     position: absolute;
-    top: 33vw;
+    display: inline-flex;
+    bottom: 95px;
+    left:170px;
 }
 #imagenPerfil{
-    /* position: absolute; */
-    /* top: calc(9% + 36vw); */
-    /* margin-top: 1px; */
-    width: calc(1px + 15vw);
-    height: calc(1px + 15vw); 
+    width: 100px;
+    height: 100px;
+    background-position: center;
     background-image: url('/assets/fotoPerfilII.jpg');
-    background-size:contain;
-    background-repeat: repeat;
+    background-size:cover;
+    background-repeat:no-repeat;
     border-radius: 50%;
 }
 
 #descripPerfil{
     margin-top: 2vw ;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 #nombrePerfil{
-    margin-top: 10px;
-    font-size: calc(1px  + 3vw);
+    margin-top: 30px;
+    font-size: 2rem;
     font-weight: bold;
     font-family: 'Open Sans', sans-serif;
+    text-align: center;
 }
 #descripPerfil1, #descripPerfil2{
-    font-size: calc(3px  + 1vw);
+    font-size: 1rem;
     font-family: 'Open Sans', sans-serif;
+}
+
+@media screen and (max-width:1400px){
+
+    #perfil{
+        bottom: 90px;
+        left:140px;
+    }
+}
+@media screen and (max-width:1199px){
+    #imagenBanner{
+        min-height: 400px;
+    }
+    #perfil{
+        bottom: 80px;
+        left:120px;
+    }
+}
+@media screen and (max-width:991px){
+    #imagenBanner{
+        min-height: 300px;
+    }
+    #perfil{
+        display: none;
+    }
+    #nombrePerfil{
+        margin-top: 0px;
+    }
+    #descripPerfil{
+        text-align: center;
+    }
+}
+@media screen and (max-width:767px){
+    #imagenBanner{
+        min-height: 200px;
+    }
+}
+@media screen and (max-width:500px){
+    #imagenBanner{
+        min-height: 150px;
+    }
+    #descripPerfil1, #descripPerfil2{
+        font-size: 0.8rem;
+    }
+}
+@media screen and (max-width:299px){
+    #imagenBanner{
+        min-height: 125;
+        background-size: cover;
+        background-position: left;
+    }
+    #descripPerfil1, #descripPerfil2{
+        display:none;
+    }
+    #nombrePerfil{
+        font-size: 1rem;
+    }
 }
 

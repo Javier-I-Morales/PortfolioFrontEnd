@@ -1,4 +1,4 @@
-<div class="articulo container-fluid rounded-5 border border-1 text-center" (mouseover)="estado = true" (mouseleave)="estado=false">
+<div class="articulo container-fluid rounded-5 border border-1 text-center" (click)="modificaEstado()" [ngStyle]="EstilosCabecera">
     <h1 class="contenido">Experiencia</h1>
-    <app-experienciacontent [ngStyle]="modificaShow(estado)"></app-experienciacontent>
+    <app-experienciacontent class="contenidoHijo" [ngStyle]="EstilosCuerpo"></app-experienciacontent>
 </div>

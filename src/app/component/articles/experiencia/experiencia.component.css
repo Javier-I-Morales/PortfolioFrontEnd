@@ -1,17 +1,4 @@
 .articulo{
-    background-color: #000000;
-    color: #FFFFFF;
-    height: 50px;
-    transition: background-color, color, height, 2s;
-}
-
-.contenidoHijo{
-    color: #000000;
-    opacity: 0;
-}
-
-.articulo:hover{
-    background-color: #FFFFFF;
-    color: #000000;
-    height: 150px;
+    transition: background-color, color, height, 1s;
+    cursor:pointer;
 }

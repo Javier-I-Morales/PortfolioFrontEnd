@@ -13,6 +13,10 @@ import { MainComponent } from './component/main/main.component';
 import { SobremicontentComponent } from './component/articles/sobremicontent/sobremicontent.component';
 import { ExperienciacontentComponent } from './component/articles/experienciacontent/experienciacontent.component';
 import { EstudioscontentComponent } from './component/articles/estudioscontent/estudioscontent.component';
+import { HardsoftkillsComponent } from './component/articles/hardsoftkills/hardsoftkills.component';
+import { HardsoftkillscontentComponent } from './component/articles/hardsoftkillscontent/hardsoftkillscontent.component';
+import { ProyectosComponent } from './component/articles/proyectos/proyectos.component';
+import { ProyectoscontentComponent } from './component/articles/proyectoscontent/proyectoscontent.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +30,11 @@ import { EstudioscontentComponent } from './component/articles/estudioscontent/e
     MainComponent,
     SobremicontentComponent,
     ExperienciacontentComponent,
-    EstudioscontentComponent
+    EstudioscontentComponent,
+    HardsoftkillsComponent,
+    HardsoftkillscontentComponent,
+    ProyectosComponent,
+    ProyectoscontentComponent
   ],
   imports: [
     BrowserModule,

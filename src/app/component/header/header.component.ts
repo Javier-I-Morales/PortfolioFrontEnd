@@ -8,10 +8,15 @@ import { Component, OnInit } from '@angular/core';
 export class HeaderComponent implements OnInit {
 
   constructor() { }
-
+  // isCollapse = true;   // guardamos el valor
+  // toggleState() { // manejador del evento
+  //     let foo = this.isCollapse;
+  //     this.isCollapse = foo === false ? true : false; 
+  // }
 
   logoArg = '/assets/logoArgProg.jpg';
   logoGit = '/assets/logoGit.jpg';
+  logoLinkedIn = '/assets/logoLink.jpg';
   ngOnInit(): void {
   }
 

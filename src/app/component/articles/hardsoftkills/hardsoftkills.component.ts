@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-experiencia',
-  templateUrl: './experiencia.component.html',
-  styleUrls: ['./experiencia.component.css']
+  selector: 'app-hardsoftkills',
+  templateUrl: './hardsoftkills.component.html',
+  styleUrls: ['./hardsoftkills.component.css']
 })
-export class ExperienciaComponent implements OnInit {
+export class HardsoftkillsComponent implements OnInit {
 
   constructor() { }
+
   EstilosCabecera = {'background-color': '#000000', 'height': 50 +'px', 'color': '#FFFFFF'};
   EstilosCuerpo = {'color': '#FFFFFF', 'display':'none'};
 

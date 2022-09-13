@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { timeout } from 'rxjs';
 
 @Component({
   selector: 'app-estudios',
@@ -9,16 +10,32 @@ export class EstudiosComponent implements OnInit {
 
   constructor() { }
 
-  show = {'transition': 0+'s','opacity': 0, 'color': '#fffffff'};
-  estado = false;
-  modificaShow(estado : boolean){
+  EstilosCabecera = {'background-color': '#000000', 'height': 50 +'px', 'color': '#FFFFFF'};
+  EstilosCuerpo = {'color': '#FFFFFF', 'display':'none'};
 
-    if(estado){
-      this.show = {'transition': 5+'s', 'opacity': 1, 'color': '#000000'};
+  estado:boolean = false;
+  
+  modificaEstado(){
+    if(this.estado == false){
+      this.estado = true;
     }else{
-      this.show = {'transition': 0+'s','opacity': 0, 'color': '#fffffff'};
+      this.estado = false;
     }
-    return this.show;
+    this.modificaEstilos();
+  }
+
+
+  modificaEstilos(){
+    if(this.estado){
+      this.EstilosCabecera = {'background-color': '#FFFFFF', 'height': 150+'px', 'color': '#000000'};
+      setTimeout(() => {
+        this.EstilosCuerpo = {'color': '#000000', 'display':'block'};
+      },1000);
+    }else
+    {
+      this.EstilosCuerpo = {'color': '#fffffff', 'display':'none'};
+      this.EstilosCabecera = {'background-color': '#000000', 'height': 50+'px', 'color': '#FFFFFF'};
+    }
   }
 
   ngOnInit(): void {
