@@ -7,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExperienciaComponent implements OnInit {
 
-  constructor() { }
-  EstilosCabecera = {'background-color': '#000000', 'height': 50 +'px', 'color': '#FFFFFF'};
+  constructor() {
+    this.modificaEstado();
+   }
+  EstilosCabecera = {'background-color': '#000000', 'height':'auto', 'color': '#FFFFFF'};
   EstilosCuerpo = {'color': '#FFFFFF', 'display':'none'};
 
   estado:boolean = false;
@@ -25,14 +27,14 @@ export class ExperienciaComponent implements OnInit {
 
   modificaEstilos(){
     if(this.estado){
-      this.EstilosCabecera = {'background-color': '#FFFFFF', 'height': 150+'px', 'color': '#000000'};
+      this.EstilosCabecera = {'background-color': '#FFFFFF', 'height': 'auto', 'color': '#000000'};
       setTimeout(() => {
         this.EstilosCuerpo = {'color': '#000000', 'display':'block'};
       },1000);
     }else
     {
+      this.EstilosCabecera = {'background-color': '#000000', 'height': 'auto', 'color': '#FFFFFF'};
       this.EstilosCuerpo = {'color': '#fffffff', 'display':'none'};
-      this.EstilosCabecera = {'background-color': '#000000', 'height': 50+'px', 'color': '#FFFFFF'};
     }
   }
 

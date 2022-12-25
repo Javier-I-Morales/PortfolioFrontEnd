@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AutenticauserService } from 'src/app/service/autenticauser.service';
 
 @Component({
   selector: 'app-header',
@@ -7,17 +9,37 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  //in = sessionStorage.getItem('estado') ==="1"? true:false;
+  estadologueado : boolean;
+
+  constructor(private ruta:Router, private autentiservice : AutenticauserService ) { 
+    this.estadologueado = false;
+  }
   // isCollapse = true;   // guardamos el valor
   // toggleState() { // manejador del evento
   //     let foo = this.isCollapse;
   //     this.isCollapse = foo === false ? true : false; 
   // }
 
-  logoArg = '/assets/logoArgProg.jpg';
-  logoGit = '/assets/logoGit.jpg';
-  logoLinkedIn = '/assets/logoLink.jpg';
+  logoArg = '/assets/images/header/logoArgProg.jpg';
+  logoGit = '/assets/images/header/logoGit.jpg';
+  logoLinkedIn = '/assets/images/header/logoLink.jpg';
+  
   ngOnInit(): void {
+    this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
+      console.log("el estado es: "+estado);
+      this.estadologueado = estado;
+    });
+  }
+
+  login(){
+    this.ruta.navigate(['/iniciar-sesion']);
+  }
+  logout(){
+    this.autentiservice.CerrarSesion();
+    sessionStorage.setItem('estado',"0");
+    console.log(sessionStorage.getItem('estado'));
+    this.ruta.navigate(['/portfolio']);
   }
 
 }

@@ -1,1 +1,28 @@
-<p>hardsoftkillscontent works!</p>
+
+<div id="contendorgrid" >
+    <div  *ngFor="let e of skills; let i = index">
+        <div class="contenedortotal">
+            <div  id="contenedorA{{i}}" class="contenedor border" [ngStyle]="color(e.porcentaje , i)">
+                <input id="circle{{i}}" type="text"  class="circle" >
+                <input style="background-color: #FFFFFF; border: none;display: block;" class="texto" type="text" value="{{e.nombre}}" [readonly]="true" [ngClass]="i.toString()">
+                <!-- <p>{{e.nombre}}</p> -->
+                <div *ngIf="estadologueado">
+                    <img id="editar" style="cursor:pointer; pointer-events: all;" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion(i)">
+                </div>
+            </div>
+
+            <div id="contenedorB{{i}}" class="contenedor border" style="display: none;" [ngStyle]="color(e.porcentaje , i)">
+                <input id="circleB{{i}}" type="text" value="0"  class="circle" >
+                <input id="textoB{{i}}"  style="background-color: #FFFFFF; border: none;display: block;" class="texto" type="text" value="" placeholder="Ingrese texto" [readonly]="false" [ngClass]="i.toString()">
+                <!-- <p>{{e.nombre}}</p> -->
+                <img id="guardarsk" style=" cursor:pointer; pointer-events: all;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i, e)">
+            </div>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+
+

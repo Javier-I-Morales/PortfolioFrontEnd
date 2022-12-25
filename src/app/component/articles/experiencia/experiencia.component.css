@@ -1,4 +1,7 @@
 .articulo{
-    transition: background-color, color, height, 1s;
-    cursor:pointer;
+    transition: background-color, color, 2s;
+}
+
+.contenido{
+    cursor:pointer
 }

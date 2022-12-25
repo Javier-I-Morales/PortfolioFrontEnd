@@ -1,5 +1,5 @@
 
-  <nav class="navbar navbar-expand-sm ">
+  <nav id="header" class="navbar navbar-expand-sm ">
 
     <div id="logoArg" >
         <a href=""><img src={{logoArg}} alt=""></a>
@@ -23,8 +23,11 @@
         <li id="logoGit" class="nav-item">
             <a href=""><img src={{logoGit}} alt=""></a>
         </li>
-        <li id="botonLogin" class="nav-item">
-            <button class="btn btn-warning" id="">Log In</button>
+        <li id="botonLogin" class="nav-item" [ngStyle]="{display: estadologueado==false ? 'block' : 'none' }" >
+            <button class="btn btn-warning btnlog" id="" (click)="login()">LogIn</button>
+        </li>
+        <li id="botonOut" class="nav-item" [ngStyle]="{display: estadologueado==true ? 'block' : 'none' }">
+          <button class="btn btn-danger btnlog" id="" (click)="logout()">LogOut</button>
         </li>
       </ul>
     </div>

@@ -3,10 +3,11 @@
 export class PersonaModel {
 
     constructor(
+        public id: number,
         public nombre: string,
-        // public direccion:string,
-        // public pais:string,
-        // public dorsal:number,
-        // public imagen:string
+        public apellido:string,
+        // public edad:number,
+        public profesion:string,
+        public imagen:string
     ){}
 }

@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+input{
+    outline: none;
+}
+#editar{
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+#guardar{
+    position: absolute;
+    top: 30px;
+    right: 0px;
+}
+#nuevo{
+    position: absolute;
+    top: -30px;
+    right: 0px;
+}
+#eliminar{
+    position: absolute;
+    top: 60px;
+    right: 0px;
+}

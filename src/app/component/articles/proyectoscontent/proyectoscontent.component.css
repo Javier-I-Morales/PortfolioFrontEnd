@@ -1,0 +1,55 @@
+
+#contenedordeproyectos{
+    position:relative;
+    display: block;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+.titulo{
+    display: block;
+    width: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    color: brown;
+}
+
+.descripcion{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:400;
+    color: brown;
+    text-align: justify;
+    padding: 0;
+    resize: none;
+    width: 100%;
+    height: 80%;
+}
+
+.imagen{
+    margin: 5px;
+    box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+.cuadro{
+    position: relative;
+}
+.texto{
+    text-align: start;
+}
+.paraNuevosEdu{
+    position:relative;
+}
+
+@media screen and (max-width:991px){
+    .descripcion{
+        height: 100px;
+    }
+    .texto{
+        text-align: center;
+    }
+}
+@media screen and (max-width:770px){
+    #contenedordeproyectos{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}

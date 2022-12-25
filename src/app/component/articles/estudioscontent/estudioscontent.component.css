@@ -1,0 +1,58 @@
+
+#contenedordeestudios{
+    position:relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    row-gap: 20px;
+    column-gap: 10px;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+
+.texto{
+    text-align: start;
+}
+
+.instituto{
+    font-weight: 900;
+    color: brown;
+}
+
+.titulo{
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight:bolder;
+    color: brown;
+    text-align: justify;
+    padding: 0;
+    resize: none;
+}
+
+.cuadro{
+    position: relative;
+}
+.paraNuevosEdu{
+    position:relative;
+}
+
+
+@media screen and (max-width:1200px){
+    #contenedordeestudios{
+        grid-template-columns: 1fr;
+        column-gap: 0px;
+
+    }
+}
+
+@media screen and (max-width:770px){
+    #contenedordeestudios{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .info{
+        display: grid;
+        grid-template-columns: 1fr;
+    }
+    .texto{
+        text-align: center;
+    }
+}

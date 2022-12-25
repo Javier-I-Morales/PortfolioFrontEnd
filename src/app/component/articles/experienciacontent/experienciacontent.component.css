@@ -1,0 +1,65 @@
+
+
+#contenedordeexperiencias{
+    position:relative;
+    display: block;
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
+.info{
+    display: grid;
+    grid-template-columns: 40% 1fr;
+}
+
+.empresa{
+    width: 100%;
+    padding: 0;
+    font-weight: bold;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    color: brown;
+    font-size: larger;
+}
+.puesto{
+    width:100%;
+}
+.fecha{
+    width: 105px;
+}
+.separadorfechas{
+    display: inline-flex;
+    margin-right: 20px;
+    margin-bottom: 0;
+}
+.texto{
+    text-align: start;
+}
+.tarea{
+    width: 100%;
+    height: 100px;
+    color: brown;
+    text-align: justify;
+    padding: 0;
+    resize: none;
+}
+.cuadro{
+    position:relative;
+}
+.paraNuevasExpe{
+    position:relative;
+}
+
+@media screen and (max-width:770px){
+    #contenedordeexperiencias{
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    .empresa{
+        font-size: medium;
+    }
+    .info{
+        grid-template-columns: 1fr;
+    }
+    .texto{
+        text-align: center;
+    }
+}
