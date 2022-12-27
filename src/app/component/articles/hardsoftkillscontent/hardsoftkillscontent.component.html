@@ -7,7 +7,7 @@
                 <input style="background-color: #FFFFFF; border: none;display: block;" class="texto" type="text" value="{{e.nombre}}" [readonly]="true" [ngClass]="i.toString()">
                 <!-- <p>{{e.nombre}}</p> -->
                 <div *ngIf="estadologueado">
-                    <img id="editar" style="cursor:pointer; pointer-events: all;" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion(i)">
+                    <img id="editar" title="editar" style="cursor:pointer; pointer-events: all;" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion(i)">
                 </div>
             </div>
 
@@ -15,7 +15,7 @@
                 <input id="circleB{{i}}" type="text" value="0"  class="circle" >
                 <input id="textoB{{i}}"  style="background-color: #FFFFFF; border: none;display: block;" class="texto" type="text" value="" placeholder="Ingrese texto" [readonly]="false" [ngClass]="i.toString()">
                 <!-- <p>{{e.nombre}}</p> -->
-                <img id="guardarsk" style=" cursor:pointer; pointer-events: all;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i, e)">
+                <img id="guardarsk" title="guardar" style=" cursor:pointer; pointer-events: all;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i, e)">
             </div>
             
         </div>

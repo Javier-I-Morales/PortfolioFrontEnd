@@ -26,7 +26,7 @@ input{
 #perfil{
     position: absolute;
     display: inline-flex;
-    bottom: 95px;
+    bottom: 120px;
     left:170px;
 }
 /* #imagenPerfil{
@@ -89,7 +89,7 @@ input{
 @media screen and (max-width:1400px){
 
     #perfil{
-        bottom: 90px;
+        bottom: 110px;
         left:140px;
     }
 }
@@ -98,7 +98,7 @@ input{
         min-height: 400px;
     }
     #perfil{
-        bottom: 80px;
+        bottom: 100px;
         left:120px;
     }
 }

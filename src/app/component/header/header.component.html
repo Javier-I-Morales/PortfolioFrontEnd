@@ -2,7 +2,7 @@
   <nav id="header" class="navbar navbar-expand-sm ">
 
     <div id="logoArg" >
-        <a href=""><img src={{logoArg}} alt=""></a>
+        <a href="{{linkargprog}}" target="_blank" title="Argentina Programa 4.0"><img src={{logoArg}} alt=""></a>
     </div>
 
     <span id="titulo">
@@ -17,12 +17,12 @@
 
     <div class="collapse navbar-collapse"  id="navbarSupportedContent" >
       <ul class="navbar-nav" >
-        <li id="logoLink" class="nav-item">
+        <!-- <li id="logoLink" class="nav-item">
           <a href=""><img src={{logoLinkedIn}} alt=""></a>
         </li>
         <li id="logoGit" class="nav-item">
             <a href=""><img src={{logoGit}} alt=""></a>
-        </li>
+        </li> -->
         <li id="botonLogin" class="nav-item" [ngStyle]="{display: estadologueado==false ? 'block' : 'none' }" >
             <button class="btn btn-warning btnlog" id="" (click)="login()">LogIn</button>
         </li>

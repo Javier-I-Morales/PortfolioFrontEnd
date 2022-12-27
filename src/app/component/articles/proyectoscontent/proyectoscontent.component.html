@@ -1,6 +1,6 @@
 <div id="contenedordeproyectos">
     <div *ngIf="estadologueado">
-        <img id="nuevo" src="/assets/images/botones/nuevo.png" alt="" width="25px" height="25px" (click)="nuevoProyecto(true)">
+        <img id="nuevo" title="nuevo" src="/assets/images/botones/nuevo.png" style="cursor:pointer;" alt="" width="25px" height="25px" (click)="nuevoProyecto(true)">
     </div>
     
     <div *ngFor="let e of proyectos; let i = index">
@@ -11,7 +11,8 @@
                 </div>
                 <div class="texto col-12 col-lg-4">
                     <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo texto" type="text" [(ngModel)]="e.nombre" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="date" [(ngModel)]="e.fecharealizacion" [readonly]="estado" [ngClass]="i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="date" [ngStyle]="{display: e.fecharealizacion != null || !estado  ? 'block':'none'}" [(ngModel)]="e.fecharealizacion" [readonly]="estado" [ngClass]="i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngStyle]="{display: e.fecharealizacion == null && estado ? 'block':'none'}" [readonly]="estado" value="Aún en proceso"  [ngClass]="i.toString()">
                     <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [(ngModel)]="e.descripcion" [readonly]="estado" [ngClass]="i.toString()"></textarea>
                     <!-- <div id="titulo">{{e.nombre}}</div>
                     <div>{{fecha(e.fecharealizacion)}}</div>
@@ -19,9 +20,9 @@
                 </div>
             </div>
             <div *ngIf="estadologueado">
-                <img id="editar" style="cursor:pointer; pointer-events: all;" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion(i)">
-                <img id="guardar" style="opacity: 0.5; cursor:default; pointer-events: none;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i)">
-                <img id="eliminar" src="/assets/images/botones/eliminar.png" alt="" width="25px" height="25px"  (click)="eliminar(e.id)">
+                <img id="editar" title="editar" style="cursor:pointer; pointer-events: all;" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion(i)">
+                <img id="guardar" title="guardar" style="opacity: 0.5; cursor:default; pointer-events: none;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i)">
+                <img id="eliminar" title="eliminar" style="cursor:pointer;" src="/assets/images/botones/eliminar.png" alt="" width="25px" height="25px"  (click)="eliminar(e.id)">
             </div>
             
         </div>
@@ -33,7 +34,7 @@
                 <label class="control-label" for="desde">Realizado: </label><input class="fecha form-control" type="date" name="desde"  [(ngModel)]="fecharealizacion">
                 <textarea class="form-control tarea texto mt-2" name="tarea" placeholder="Descripción" style="resize:none" [(ngModel)]="descripcion"></textarea> 
             </div>
-            <img id="guardar" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px" (click)="guardarNuevosDatos()">
+            <img id="guardar" src="/assets/images/botones/guardar.png" style="cursor:pointer;" alt="" width="25px" height="25px" (click)="guardarNuevosDatos()">
         </div>
 
     </div>

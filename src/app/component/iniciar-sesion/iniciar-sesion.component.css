@@ -1,0 +1,23 @@
+
+
+.fondo{
+    padding-top: 200px;
+    background-color: #000;
+    background-image: url("/assets/images/iniciarsesion/fondoArgPro.png");
+    height: 100vh;
+}
+
+.formulario{
+    position: relative;
+    background: #FFCA2C;
+    max-width: 350px;
+    color:#FFF;
+}
+
+
+
+@media screen and (max-height:530px){
+    .formulario{
+        display: none;
+    }
+}

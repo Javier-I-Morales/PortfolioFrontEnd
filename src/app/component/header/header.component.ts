@@ -20,7 +20,7 @@ export class HeaderComponent implements OnInit {
   //     let foo = this.isCollapse;
   //     this.isCollapse = foo === false ? true : false; 
   // }
-
+  linkargprog:string = "https://www.argentina.gob.ar/economia/conocimiento/argentina-programa";
   logoArg = '/assets/images/header/logoArgProg.jpg';
   logoGit = '/assets/images/header/logoGit.jpg';
   logoLinkedIn = '/assets/images/header/logoLink.jpg';
