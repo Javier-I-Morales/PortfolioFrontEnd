@@ -3,8 +3,9 @@ import { ExperienciaModel } from 'src/app/models/experiencia.models';
 import { ExperienciaServiceService } from 'src/app/service/experiencia-service.service';
 import "jquery";
 import { AutenticauserService } from 'src/app/service/autenticauser.service';
+
 //import { timer } from 'rxjs';
-// import { DatePipe } from '@angular/common';
+import { DATE_PIPE_DEFAULT_TIMEZONE, DatePipe } from '@angular/common';
 
 declare var $:any;
 
@@ -30,7 +31,7 @@ export class ExperienciacontentComponent implements OnInit {
   fechafin: Date = new Date;
   tarea: string ="";
 
-  // pipe = new DatePipe('en-US');
+  pipe = new DatePipe('en-US');
 
   constructor(private servicio : ExperienciaServiceService, private autentiservice : AutenticauserService) {
     this.estadologueado = false;
@@ -38,18 +39,26 @@ export class ExperienciacontentComponent implements OnInit {
 
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
+      //console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
     
     this.servicio.GetExperiencia().subscribe((resp:ExperienciaModel[])=>{
       this.experiencias = resp;
+      this.experiencias.forEach(exp => {
+          exp.fechainicio= new Date(exp.fechainicio);
+          if(exp.fechafin != null){
+            exp.fechafin= new Date(exp.fechafin);
+          }
+      });
     });
+
+    
   }
 
-  // fecha(fecha: Date) {
-  //   return this.pipe.transform(fecha,'dd/MM/yyyy');
-  // }
+  obtenerfecha(fecha: Date) {
+    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
+  }
 
   imagen(num:string){
     return {
@@ -70,22 +79,58 @@ export class ExperienciacontentComponent implements OnInit {
   }
   modificaInput(i:number){
     if(this.estado){
-      $("."+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".empresa"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".puesto"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechainicio"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechafin"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".tarea"+i).css({'background-color': '#FFFFFF','border': 'none' })
       $(".g"+i).css({'opacity': 0.5, 'cursor':'default', 'pointer-events': 'none' })
     }else{
-      $("."+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".empresa"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".puesto"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechafin"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechainicio"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".tarea"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
       $(".g"+i).css({'opacity': 1, 'cursor':'pointer', 'pointer-events': 'all' })
     }
   }
 
+  traefecha(date:string){
+
+    let cadena = date.split("/");
+
+    let dia = parseInt(cadena[0]);
+    let mes = parseInt(cadena[1])-1;
+    let ano = parseInt(cadena[2]);
+    let fecha = new Date(ano, mes, dia);
+    return fecha; 
+  }
   guardarDatos(i:number){
-    this.experiencias.forEach(experiencia => {
-      this.servicio.UpdateExperiencia(experiencia).subscribe(data =>{
-        this.estado = true;
-        this.puedeguardar = false;
-        this.modificaInput(i);
-        console.log("Datos guardados.")
-      });
+
+    this.id = $(".id"+i).val();
+    this.empresa = $(".empresa"+i).val();
+    this.puesto = $(".puesto"+i).val();
+    this.fechainicio = this.traefecha($(".fechainicio"+i).val());
+    this.fechafin = this.traefecha($(".fechafin"+i).val());
+    this.tarea = $(".tarea"+i).val();
+    this.numeroimagen = $(".imagen"+i).val();
+
+    let experiencia : ExperienciaModel = new ExperienciaModel(
+      this.id,
+      this.empresa,
+      this.puesto,
+      this.fechainicio,
+      this.fechafin,
+      this.tarea,
+      this.numeroimagen
+    );
+
+    this.servicio.UpdateExperiencia(experiencia).subscribe(data =>{
+      this.estado = true;
+      this.puedeguardar = false;
+      this.id = 0;
+      this.modificaInput(i);
+      console.log("Datos actualizados.");
     });
   }
 

@@ -32,7 +32,6 @@ export class BannerComponent implements OnInit {
 
 
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
 

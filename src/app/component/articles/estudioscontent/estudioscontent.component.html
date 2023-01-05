@@ -11,12 +11,13 @@
                 <div class="col ">
                     <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"></div>
                 </div>
+                <input style="display:none"  type="text" [(ngModel)]="e.id" [ngClass]="'id'+i.toString()">
+                <input style="display:none" type="text" [(ngModel)]="e.numeroimagen" [ngClass]="'imagen'+i.toString()">
                 <div class="texto col ">
-                    <input style="background-color: #FFFFFF; border: none" class="instituto empresa texto" type="text" [(ngModel)]="e.instituto" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="date" [(ngModel)]="e.fechainicio" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="date" [ngStyle]="{display: e.fechafin != null || !estado  ? 'block':'none'}" [(ngModel)]="e.fechafin" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngStyle]="{display: e.fechafin == null && estado ? 'block':'none'}" [readonly]="estado" value="Aún en proceso"  [ngClass]="i.toString()">
-                    <textarea style="background-color: #FFFFFF; border: none" class="titulo form-control texto" name="" id="" [(ngModel)]="e.titulo" [readonly]="estado" [ngClass]="i.toString()"></textarea>
+                    <input style="background-color: #FFFFFF; border: none" class="instituto empresa texto" type="text" [(ngModel)]="e.instituto" [readonly]="estado" [ngClass]="'instituto'+i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngModel]="obtenerfecha(e.fechainicio)" [readonly]="estado" [ngClass]="'fechainicioes'+i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngModel]="obtenerfecha(e.fechafin)" [readonly]="estado" [ngClass]="'fechafines'+i.toString()">
+                    <textarea style="background-color: #FFFFFF; border: none" class="titulo form-control texto" name="" id="" [(ngModel)]="e.titulo" [readonly]="estado" [ngClass]="'titulo'+i.toString()"></textarea>
                 </div>
             </div>
             <div *ngIf="estadologueado">
@@ -24,7 +25,6 @@
                 <img id="guardar" title="guardar" style="opacity: 0.5; cursor:default; pointer-events: none;" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px"  [ngClass]="'g'+i.toString()" (click)="guardarDatos(i)">
                 <img id="eliminar" title="eliminar" src="/assets/images/botones/eliminar.png" style="cursor:pointer;" alt="" width="25px" height="25px"  (click)="eliminar(e.id)">
             </div>
-            
         </div>
         
     </div>

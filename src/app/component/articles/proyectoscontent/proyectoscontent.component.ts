@@ -27,7 +27,7 @@ export class ProyectoscontentComponent implements OnInit {
   nombre: string = "";
   fecharealizacion:Date = new Date;
   descripcion: string ="";
-  numeroimagen:string ="";
+  link:string ="";
 
   constructor(private servicio:ProyectoService, private autentiservice : AutenticauserService) { 
     this.estadologueado = false;
@@ -35,13 +35,18 @@ export class ProyectoscontentComponent implements OnInit {
 
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
 
     this.servicio.getProyectos().subscribe((resp:ProyectoModels[])=>{
       this.proyectos = resp;
       this.cadenas = this.cadena;
+
+      this.proyectos.forEach(pro => {
+        if(pro.fecharealizacion != null){
+          pro.fecharealizacion= new Date(pro.fecharealizacion);
+        }
+      });
     });
   }
 
@@ -50,6 +55,10 @@ export class ProyectoscontentComponent implements OnInit {
 
     return {'background-color': '#FFFFFF', 'color': '#000000'};
 
+  }
+
+  obtenerfecha(fecha: Date) {
+    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
   imagen(numI : string, numII : string){
@@ -69,22 +78,51 @@ export class ProyectoscontentComponent implements OnInit {
   }
   modificaInput(i:number){
     if(this.estado){
-      $("."+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".descripcion"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".nombre"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fecharealizacion"+i).css({'background-color': '#FFFFFF','border': 'none' })
       $(".g"+i).css({'opacity': 0.5, 'cursor':'default', 'pointer-events': 'none' })
     }else{
-      $("."+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".descripcion"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".nombre"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fecharealizacion"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
       $(".g"+i).css({'opacity': 1, 'cursor':'pointer', 'pointer-events': 'all' })
     }
   }
 
+  traefecha(date:string){
+
+    let cadena = date.split("/");
+
+    let dia = parseInt(cadena[0]);
+    let mes = parseInt(cadena[1])-1;
+    let ano = parseInt(cadena[2]);
+    let fecha = new Date(ano, mes, dia);
+    return fecha; 
+  }
+
   guardarDatos(i:number){
-    this.proyectos.forEach(proyecto => {
-      this.servicio.UpdateProyecto(proyecto).subscribe(data =>{
-        this.estado = true;
-        this.puedeguardar = false;
-        this.modificaInput(i);
-        console.log("Datos guardados.")
-      });
+
+    this.id = $(".id"+i).val();
+    this.descripcion = $(".descripcion"+i).val();
+    this.fecharealizacion = this.traefecha($(".fecharealizacion"+i).val());
+    this.nombre = $(".nombre"+i).val();
+    this.link = $(".imagen"+i).val();
+
+    let proyecto : ProyectoModels = new ProyectoModels(
+      this.id,
+      this.nombre,
+      this.fecharealizacion,
+      this.link,
+      this.descripcion
+      );
+
+    this.servicio.UpdateProyecto(proyecto).subscribe(data =>{
+      this.estado = true;
+      this.puedeguardar = false;
+      this.id = 0;
+      this.modificaInput(i);
+      console.log("Datos guardados.")
     });
   }
 

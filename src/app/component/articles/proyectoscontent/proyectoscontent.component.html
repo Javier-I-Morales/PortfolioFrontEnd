@@ -9,14 +9,12 @@
                 <div class="col-12 col-lg-4" *ngFor="let n of cadenas">
                     <div class="imagen" [ngStyle]="imagen(e.link, n)"></div>
                 </div>
+                <input style="display:none"  type="text" [(ngModel)]="e.id" [ngClass]="'id'+i.toString()">
+                <input style="display:none" type="text" [(ngModel)]="e.link" [ngClass]="'imagen'+i.toString()">
                 <div class="texto col-12 col-lg-4">
-                    <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo texto" type="text" [(ngModel)]="e.nombre" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="date" [ngStyle]="{display: e.fecharealizacion != null || !estado  ? 'block':'none'}" [(ngModel)]="e.fecharealizacion" [readonly]="estado" [ngClass]="i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngStyle]="{display: e.fecharealizacion == null && estado ? 'block':'none'}" [readonly]="estado" value="Aún en proceso"  [ngClass]="i.toString()">
-                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [(ngModel)]="e.descripcion" [readonly]="estado" [ngClass]="i.toString()"></textarea>
-                    <!-- <div id="titulo">{{e.nombre}}</div>
-                    <div>{{fecha(e.fecharealizacion)}}</div>
-                    <div>{{e.descripcion}}</div> -->
+                    <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo texto" type="text" [(ngModel)]="e.nombre" [readonly]="estado" [ngClass]="'nombre'+i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="text" [ngModel]="obtenerfecha(e.fecharealizacion)" [readonly]="estado" [ngClass]="'fecharealizacion'+i.toString()">
+                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [(ngModel)]="e.descripcion" [readonly]="estado" [ngClass]="'descripcion'+i.toString()"></textarea>
                 </div>
             </div>
             <div *ngIf="estadologueado">

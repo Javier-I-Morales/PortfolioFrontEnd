@@ -38,14 +38,23 @@ export class EstudioscontentComponent implements OnInit {
   ngOnInit(): void {
 
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
 
     this.servicio.GetEducacion().subscribe((resp:EducacionModel[])=>{
-      //console.log(resp);
       this.estudios = resp;
+      this.estudios.forEach(est => {
+        est.fechainicio= new Date(est.fechainicio);
+        if(est.fechafin != null){
+          est.fechafin= new Date(est.fechafin);
+        }
+      });
     })
+    
+  }
+
+  obtenerfecha(fecha: Date) {
+    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
   ruta(num :string){
@@ -75,23 +84,57 @@ export class EstudioscontentComponent implements OnInit {
   }
   modificaInput(i:number){
     if(this.estado){
-      $("."+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".instituto"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechainicioes"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechafines"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".titulo"+i).css({'background-color': '#FFFFFF','border': 'none' })
       $(".g"+i).css({'opacity': 0.5, 'cursor':'default', 'pointer-events': 'none' })
     }else{
-      $("."+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".instituto"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechafines"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechainicioes"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".titulo"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
       $(".g"+i).css({'opacity': 1, 'cursor':'pointer', 'pointer-events': 'all' })
     }
   }
 
+  traefecha(date:string){
+
+    let cadena = date.split("/");
+
+    let dia = parseInt(cadena[0]);
+    let mes = parseInt(cadena[1])-1;
+    let ano = parseInt(cadena[2]);
+    let fecha = new Date(ano, mes, dia);
+    return fecha; 
+  }
+
   guardarDatos(i:number){
-    this.estudios.forEach(estudio => {
-      this.servicio.UpdateEducacion(estudio).subscribe(data =>{
-        this.estado = true;
-        this.puedeguardar = false;
-        this.modificaInput(i);
-        console.log("Datos guardados.")
-      });
+
+    this.id = $(".id"+i).val();
+    this.instituto = $(".instituto"+i).val();
+    this.fechainicio = this.traefecha($(".fechainicioes"+i).val());
+    this.fechafin = this.traefecha($(".fechafines"+i).val());
+    this.titulo = $(".titulo"+i).val();
+    this.numeroimagen = $(".imagen"+i).val();
+
+    let estudio : EducacionModel = new EducacionModel(
+      this.id,
+      this.instituto,
+      this.fechainicio,
+      this.fechafin,
+      this.titulo,
+      this.numeroimagen
+    );
+
+    this.servicio.UpdateEducacion(estudio).subscribe(data =>{
+      this.estado = true;
+      this.puedeguardar = false;
+      this.id = 0;
+      this.modificaInput(i);
+      console.log("Datos actualizados.")
     });
+
   }
 
   nuevaEducacion(tipo:boolean){

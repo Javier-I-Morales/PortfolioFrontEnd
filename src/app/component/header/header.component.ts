@@ -27,7 +27,6 @@ export class HeaderComponent implements OnInit {
   
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
   }
@@ -38,7 +37,6 @@ export class HeaderComponent implements OnInit {
   logout(){
     this.autentiservice.CerrarSesion();
     sessionStorage.setItem('estado',"0");
-    console.log(sessionStorage.getItem('estado'));
     this.ruta.navigate(['/portfolio']);
   }
 

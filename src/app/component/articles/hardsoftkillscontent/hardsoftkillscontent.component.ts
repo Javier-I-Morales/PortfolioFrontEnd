@@ -26,7 +26,6 @@ export class HardsoftkillscontentComponent implements OnInit {
 
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
-      console.log("el estado es: "+estado);
       this.estadologueado = estado;
     });
 
