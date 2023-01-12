@@ -7,11 +7,16 @@ import { EducacionModel } from '../models/educacion.models';
   providedIn: 'root'
 })
 export class EducacionService {
-
+  
   private urlget="http://localhost:8080/traeeducacion"
   private urlput="http://localhost:8080/actualizaeducacion"
   private urlpost="http://localhost:8080/creaeducacion"
   private urldel="http://localhost:8080/eliminaeducacionid/"
+
+  // private urlget="https://portfoliowebmoralesjavierignacio.onrender.com/traeeducacion"
+  // private urlput="https://portfoliowebmoralesjavierignacio.onrender.com/actualizaeducacion"
+  // private urlpost="https://portfoliowebmoralesjavierignacio.onrender.com/creaeducacion"
+  // private urldel="https://portfoliowebmoralesjavierignacio.onrender.com/eliminaeducacionid/"
 
   constructor(private http:HttpClient) { }
 

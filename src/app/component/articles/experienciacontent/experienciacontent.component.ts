@@ -6,6 +6,7 @@ import { AutenticauserService } from 'src/app/service/autenticauser.service';
 
 //import { timer } from 'rxjs';
 import { DATE_PIPE_DEFAULT_TIMEZONE, DatePipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 
 declare var $:any;
 
@@ -31,9 +32,13 @@ export class ExperienciacontentComponent implements OnInit {
   fechafin: Date = new Date;
   tarea: string ="";
 
+  pathpuro : string = "";
+
   pipe = new DatePipe('en-US');
 
-  constructor(private servicio : ExperienciaServiceService, private autentiservice : AutenticauserService) {
+  constructor(private servicio : ExperienciaServiceService, 
+    private autentiservice : AutenticauserService,
+    private http : HttpClient) {
     this.estadologueado = false;
   }
 
@@ -41,8 +46,13 @@ export class ExperienciacontentComponent implements OnInit {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
       //console.log("el estado es: "+estado);
       this.estadologueado = estado;
+      console.log(estado);
+      if(!this.estadologueado){
+        this.estado = true;
+        this.desactivarEdicion();
+      }
     });
-    
+
     this.servicio.GetExperiencia().subscribe((resp:ExperienciaModel[])=>{
       this.experiencias = resp;
       this.experiencias.forEach(exp => {
@@ -56,13 +66,19 @@ export class ExperienciacontentComponent implements OnInit {
     
   }
 
+  desactivarEdicion(){
+    for(var i = 0; i <=5;i++){
+      this.modificaInput(i);
+    }
+  }
+
   obtenerfecha(fecha: Date) {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
-  imagen(num:string){
+  imagen(pathimagen:string){
     return {
-      'background-image': 'url(/assets/images/experiencia/'+num+'.jpg)',
+      'background-image': 'url('+pathimagen+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
@@ -79,18 +95,18 @@ export class ExperienciacontentComponent implements OnInit {
   }
   modificaInput(i:number){
     if(this.estado){
-      $(".empresa"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".puesto"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".fechainicio"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".fechafin"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".tarea"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".empresaex"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".puestoex"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechainicioex"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fechafinex"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".tareaex"+i).css({'background-color': '#FFFFFF','border': 'none' })
       $(".g"+i).css({'opacity': 0.5, 'cursor':'default', 'pointer-events': 'none' })
     }else{
-      $(".empresa"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".puesto"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".fechafin"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".fechainicio"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".tarea"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".empresaex"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".puestoex"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechafinex"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fechainicioex"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".tareaex"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
       $(".g"+i).css({'opacity': 1, 'cursor':'pointer', 'pointer-events': 'all' })
     }
   }
@@ -107,13 +123,21 @@ export class ExperienciacontentComponent implements OnInit {
   }
   guardarDatos(i:number){
 
-    this.id = $(".id"+i).val();
-    this.empresa = $(".empresa"+i).val();
-    this.puesto = $(".puesto"+i).val();
-    this.fechainicio = this.traefecha($(".fechainicio"+i).val());
-    this.fechafin = this.traefecha($(".fechafin"+i).val());
-    this.tarea = $(".tarea"+i).val();
-    this.numeroimagen = $(".imagen"+i).val();
+    this.id = $(".idex"+i).val();
+    this.empresa = $(".empresaex"+i).val();
+    this.puesto = $(".puestoex"+i).val();
+    this.fechainicio = this.traefecha($(".fechainicioex"+i).val());
+    this.fechafin = this.traefecha($(".fechafinex"+i).val());
+    this.tarea = $(".tareaex"+i).val();
+
+    if(this.pathpuro.length > 1){
+      let pathUnSplit = this.pathpuro.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.numeroimagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.numeroimagen = $(".imagenex"+i).val();
+    }
+    
 
     let experiencia : ExperienciaModel = new ExperienciaModel(
       this.id,
@@ -131,6 +155,7 @@ export class ExperienciacontentComponent implements OnInit {
       this.id = 0;
       this.modificaInput(i);
       console.log("Datos actualizados.");
+      this.ngOnInit();
     });
   }
 
@@ -143,8 +168,15 @@ export class ExperienciacontentComponent implements OnInit {
   }
 
   guardarNuevosDatos(){
-    let num = (this.experiencias.length + 1).toString();
-    let exp = new ExperienciaModel(this.id , this.empresa, this.puesto, this.fechainicio, this.fechafin, this.tarea,num);
+    //let num = (this.experiencias.length + 1).toString();
+    if(this.pathpuro.length > 1){
+      let pathUnSplit = this.pathpuro.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.numeroimagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.numeroimagen = "";
+    }
+    let exp = new ExperienciaModel(this.id , this.empresa, this.puesto, this.fechainicio, this.fechafin, this.tarea,this.numeroimagen);
     this.servicio.creaexperiencia(exp).subscribe(data =>{
       this.ngOnInit();
     });
@@ -154,9 +186,7 @@ export class ExperienciacontentComponent implements OnInit {
     this.fechainicio= new Date;
     this.fechafin= new Date;
     this.tarea ="";
-
     this.nuevaExperiencia(false);
-
   }
 
   eliminar(num : number){

@@ -7,9 +7,12 @@ import { HardSoftSkillsModel } from '../models/HasdSoftSkillsModel';
   providedIn: 'root'
 })
 export class HardsoftskillsService {
-
+  
   private urlget = "http://localhost:8080/traeskills";
   private urlput = "http://localhost:8080/actualizaskills";
+
+  // private urlget = "https://portfoliowebmoralesjavierignacio.onrender.com/traeskills";
+  // private urlput = "https://portfoliowebmoralesjavierignacio.onrender.com/actualizaskills";
 
   constructor(private http:HttpClient) {}
 

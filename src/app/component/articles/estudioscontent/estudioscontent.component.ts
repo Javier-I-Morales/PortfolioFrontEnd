@@ -27,7 +27,7 @@ export class EstudioscontentComponent implements OnInit {
   titulo: string ="";
   numeroimagen:string ="";
 
-
+  pathpuroes : string = "";
   // pipe = new DatePipe('en-US');
   estilo = {'background-color': 'blue', 'color': 'red'};
 
@@ -39,11 +39,16 @@ export class EstudioscontentComponent implements OnInit {
 
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
       this.estadologueado = estado;
+      if(!this.estadologueado){
+        this.estado = true;
+        this.desactivarEdicion();
+      }
     });
 
     this.servicio.GetEducacion().subscribe((resp:EducacionModel[])=>{
       this.estudios = resp;
       this.estudios.forEach(est => {
+        
         est.fechainicio= new Date(est.fechainicio);
         if(est.fechafin != null){
           est.fechafin= new Date(est.fechafin);
@@ -53,17 +58,23 @@ export class EstudioscontentComponent implements OnInit {
     
   }
 
+  desactivarEdicion(){
+    for(var i = 0; i <=5;i++){
+      this.modificaInput(i);
+    }
+  }
+
   obtenerfecha(fecha: Date) {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
-  ruta(num :string){
-    return "/assets/images/estudio/"+num+".jpg";
-  }
+  // ruta(num :string){
+  //   return "/assets/images/estudio/"+num+".jpg";
+  // }
 
-  imagen(num : string){
+  imagen(pathimagen : string){
     return {
-      'background-image': 'url(/assets/images/estudio/'+num+'.jpg)',
+      'background-image': 'url('+pathimagen+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
@@ -111,12 +122,20 @@ export class EstudioscontentComponent implements OnInit {
 
   guardarDatos(i:number){
 
-    this.id = $(".id"+i).val();
+    this.id = $(".idestu"+i).val();
     this.instituto = $(".instituto"+i).val();
     this.fechainicio = this.traefecha($(".fechainicioes"+i).val());
     this.fechafin = this.traefecha($(".fechafines"+i).val());
     this.titulo = $(".titulo"+i).val();
-    this.numeroimagen = $(".imagen"+i).val();
+    this.numeroimagen = $(".pathpuroes"+i).val();
+
+    if(this.numeroimagen.length > 1){
+      let pathUnSplit = this.numeroimagen.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.numeroimagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.numeroimagen = $(".imagenest"+i).val();
+    }
 
     let estudio : EducacionModel = new EducacionModel(
       this.id,
@@ -133,6 +152,7 @@ export class EstudioscontentComponent implements OnInit {
       this.id = 0;
       this.modificaInput(i);
       console.log("Datos actualizados.")
+      this.ngOnInit();
     });
 
   }
@@ -146,8 +166,16 @@ export class EstudioscontentComponent implements OnInit {
   }
 
   guardarNuevosDatos(){
-    let num = (this.estudios.length + 1).toString();
-    let educacion = new EducacionModel(this.id , this.instituto, this.fechainicio, this.fechafin, this.titulo, num);
+    //let num = (this.estudios.length + 1).toString();
+    if(this.pathpuroes.length > 1){
+      let pathUnSplit = this.pathpuroes.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.numeroimagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.numeroimagen = "";
+    }
+    
+    let educacion = new EducacionModel(this.id , this.instituto, this.fechainicio, this.fechafin, this.titulo, this.numeroimagen);
     this.servicio.PostEducacion(educacion).subscribe(data =>{
       this.ngOnInit();
     });

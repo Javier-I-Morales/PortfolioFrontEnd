@@ -11,10 +11,9 @@ import { AutenticauserService } from 'src/app/service/autenticauser.service';
 })
 export class BannerComponent implements OnInit {
 
-  //login:boolean = sessionStorage.getItem('estado') ==="1"? true:false;
   estadologueado:boolean;
   estado: boolean = true;
-  //es:string = localStorage.getItem('estado')|| "";
+
   puedeguardar : boolean = false;
   persona: PersonaModel = {id:0,nombre:"",apellido:"",profesion:"",imagen:""};
 
@@ -22,6 +21,8 @@ export class BannerComponent implements OnInit {
   descripcion1 : string = "";
   descripcion2 : string = "";
   descripcion3 : string = "";
+  imagenperfil : string = "";
+  pathpuro : string = "";
 
   constructor(private servicio: PersonaServiceService, private autentiservice : AutenticauserService) {
 
@@ -33,6 +34,10 @@ export class BannerComponent implements OnInit {
 
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
       this.estadologueado = estado;
+
+      if(!this.estadologueado){
+        this.estado = true;
+      }
     });
 
     this.servicio.GetPersona().subscribe((resp:PersonaModel)=>{
@@ -41,6 +46,7 @@ export class BannerComponent implements OnInit {
       this.descripcion1 = this.persona.profesion.split(",")[0];
       this.descripcion2 = this.persona.profesion.split(",")[1];
       this.descripcion3 = this.persona.profesion.split(",")[2];
+      this.imagenperfil = this.persona.imagen; 
     });
 
   }
@@ -48,7 +54,8 @@ export class BannerComponent implements OnInit {
   imagenPerfil(){
     return {'width': '100px', 'height': '100px',
     'background-position': 'center',
-    'background-image': 'url("/assets/images/banner/fotoperfil.jpg")',
+    'background-image': 'url('+this.imagenperfil+')',
+    //'background-image': 'url("/assets/images/banner/fotoperfil.jpg")',
     'background-size':'cover',
     'background-repeat':'no-repeat',
     'border-radius': '50%'
@@ -81,21 +88,29 @@ export class BannerComponent implements OnInit {
   guardarDatos(){
     this.persona.apellido = this.nombre.split(" ")[0];
     this.persona.nombre = this.nombre.split(" ")[1];
-
     this.persona.profesion = this.descripcion1 + "," + this.descripcion2 + "," + this.descripcion3;
+
+    if(this.pathpuro.length > 1){
+      let pathUnSplit = this.pathpuro.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.persona.imagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+      console.log(this.persona.imagen);
+    }
+    
 
     this.servicio.UpdatePersona(this.persona).subscribe(data =>{
       console.log(data);
       this.estado = true;
       this.puedeguardar = false;
       this.modificaInput();
+
+      this.ngOnInit();
     });
+
+    
   }
 
 
-  // cambiarImagen(event:Event): any{
-  //   const archivo = (<HTMLInputElement>event.target).files?.item(0);
-  //   console.log(archivo);
-  // }
+  
 
 }

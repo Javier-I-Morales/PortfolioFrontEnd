@@ -5,19 +5,14 @@
     </div>
     <div id="perfil" class="">
         <div class="form-group center"  [ngStyle]="imagenPerfil()">
-            <!-- <label for="file-lapiz">
-              <img id="editar" src="/assets/images/botones/editar.png" class="lapizEditar"/>
-            </label> -->
-            <!-- <input id="file-lapiz" type="file" accept="image/jpg" (change)="cambiarImagen($event)" />
-            <img id="guardarImagen" style="display: none;" src="/assets/images/botones/guardar.png" alt="" (click)="guardarImagen()" > -->
         </div>
-        <!-- <div id="imagenPerfil"  [ngStyle]="imagenPerfil()">
-        </div> -->
-        <!-- <img id="editar" src="/assets/images/botones/editar.png" alt="" width="25px" height="25px" (click)="activarEdicion()"> -->
     </div>
     <div  id="descripPerfil" class="container">
+        <div id="perfilpath" *ngIf="!estado">
+            <input type="text" id="pathimagenperfil" placeholder="Ingrese path de drive" [(ngModel)]="pathpuro" class="form-control">
+        </div>
         <div class="row m-0">
-            <div class="col-lg-4 p-2" style="display: flex;">
+            <div class="col-lg-4 p-2" >
                 <input id="nombrePerfil" class="" type="text" [(ngModel)]="nombre" [readonly]="estado" [ngStyle]="modificaInput()">
             </div>
             <div class="col-lg-8 text-center p-2">

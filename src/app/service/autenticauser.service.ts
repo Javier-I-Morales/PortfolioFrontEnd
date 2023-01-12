@@ -10,6 +10,7 @@ import { map } from 'rxjs/operators';
 export class AutenticauserService {
 
   private urlaut="http://localhost:8080/existeuser/";
+  //private urlaut="https://portfoliowebmoralesjavierignacio.onrender.com/existeuser/";
 
   private sesionActiva: boolean;
   private sesionActiva$ : Subject<boolean>;

@@ -10,9 +10,12 @@
             <div class="info row p-3">
                 <div class="col ">
                     <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"></div>
+                    <div id="perfilpath" *ngIf="!estado">
+                        <input type="text" id="pathimagenest" placeholder="Ingrese path de drive"  class="form-control" [ngClass]="'pathpuroes'+i.toString()">
+                    </div>
                 </div>
-                <input style="display:none"  type="text" [(ngModel)]="e.id" [ngClass]="'id'+i.toString()">
-                <input style="display:none" type="text" [(ngModel)]="e.numeroimagen" [ngClass]="'imagen'+i.toString()">
+                <input style="display:none"  type="text" [value]="e.id" [ngClass]="'idestu'+i.toString()"> 
+                <input style="display:none" type="text" [value]="e.numeroimagen" [ngClass]="'imagen'+i.toString()"> 
                 <div class="texto col ">
                     <input style="background-color: #FFFFFF; border: none" class="instituto empresa texto" type="text" [(ngModel)]="e.instituto" [readonly]="estado" [ngClass]="'instituto'+i.toString()">
                     <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngModel]="obtenerfecha(e.fechainicio)" [readonly]="estado" [ngClass]="'fechainicioes'+i.toString()">
@@ -31,6 +34,7 @@
     <div class="paraNuevosEdu" style="display: none;">
         <div class=" border border-2 rounded-5 mx-auto py-3 px-5 mb-5" style="position:relative">
             <div class="row  info">
+                <input class="texto form-control mb-2" type="text" name="numero" placeholder="Ingrese path de drive" [(ngModel)]="pathpuroes">
                 <input class=" texto form-control mb-2" type="text" name="nombre" placeholder="Instituto" [(ngModel)]="instituto">
                 <label class="control-label" for="desde">Desde: </label><input class="fecha form-control" type="date" name="desde"  [(ngModel)]="fechainicio">
                 <label class="control-label" for="hasta">Hasta: </label><input class="fecha form-control" type="date" name="hasta" [(ngModel)]="fechafin">

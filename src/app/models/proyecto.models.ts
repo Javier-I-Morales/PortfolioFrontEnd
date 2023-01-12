@@ -7,7 +7,8 @@ export class ProyectoModels{
         public nombre: string,
         public fecharealizacion: Date,
         public link: string,
-        public descripcion: string
+        public descripcion: string,
+        public linkdos: string
     ){}
 
 }

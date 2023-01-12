@@ -29,6 +29,11 @@ input{
     bottom: 120px;
     left:170px;
 }
+#perfilpath{
+    position: absolute;
+    top: 0px;
+    left:6vw;
+}
 /* #imagenPerfil{
     width: 100px;
     height: 100px;

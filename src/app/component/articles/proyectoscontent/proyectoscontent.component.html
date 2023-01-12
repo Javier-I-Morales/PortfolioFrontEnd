@@ -6,15 +6,23 @@
     <div *ngFor="let e of proyectos; let i = index">
         <div class="cuadro border border-2 rounded-5 mx-auto mb-3" [ngStyle]="color()">
             <div class="info row p-3">
-                <div class="col-12 col-lg-4" *ngFor="let n of cadenas">
-                    <div class="imagen" [ngStyle]="imagen(e.link, n)"></div>
+                <div class="col-12 col-lg-4">
+                    <div class="imagen" [ngStyle]="imagen(e.link)"></div>
+                    <div id="perfilpath" *ngIf="!estado">
+                        <input type="text" id="pathimagenpro" placeholder="Ingrese path de drive"  class="form-control" [ngClass]="'pathpurouno'+i.toString()">
+                    </div>
+                    <div class="imagen" [ngStyle]="imagen(e.linkdos)"></div>
+                    <div id="perfilpath" *ngIf="!estado">
+                        <input type="text" id="pathimagenpro" placeholder="Ingrese path de drive"  class="form-control" [ngClass]="'pathpurodos'+i.toString()">
+                    </div>
                 </div>
-                <input style="display:none"  type="text" [(ngModel)]="e.id" [ngClass]="'id'+i.toString()">
-                <input style="display:none" type="text" [(ngModel)]="e.link" [ngClass]="'imagen'+i.toString()">
-                <div class="texto col-12 col-lg-4">
-                    <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo texto" type="text" [(ngModel)]="e.nombre" [readonly]="estado" [ngClass]="'nombre'+i.toString()">
-                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="text" [ngModel]="obtenerfecha(e.fecharealizacion)" [readonly]="estado" [ngClass]="'fecharealizacion'+i.toString()">
-                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [(ngModel)]="e.descripcion" [readonly]="estado" [ngClass]="'descripcion'+i.toString()"></textarea>
+                <input style="display:none"  type="text" [value]="e.id" [ngClass]="'idpro'+i.toString()">
+                <input style="display:none" type="text" [value]="e.link" [ngClass]="'imagenprouno'+i.toString()">
+                <input style="display:none" type="text" [value]="e.linkdos" [ngClass]="'imagenprodos'+i.toString()">
+                <div class="texto col-12 col-lg-8">
+                    <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo texto" type="text" [value]="e.nombre" [readonly]="estado" [ngClass]="'nombrepro'+i.toString()">
+                    <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="text" [value]="obtenerfecha(e.fecharealizacion)" [readonly]="estado" [ngClass]="'fecharealizacionpro'+i.toString()">
+                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [value]="e.descripcion" [readonly]="estado" [ngClass]="'descripcionpro'+i.toString()"></textarea>
                 </div>
             </div>
             <div *ngIf="estadologueado">
@@ -27,6 +35,8 @@
     </div>
     <div class="paraNuevosEdu" style="display: none;">
         <div class=" border border-2 rounded-5 mx-auto py-3 px-5 mb-5" style="position:relative">
+            <input class="texto form-control mb-2" type="text" name="numero" placeholder="Ingrese path de drive" [(ngModel)]="pathpurouno">
+            <input class="texto form-control mb-2" type="text" name="numero" placeholder="Ingrese path de drive" [(ngModel)]="pathpurodos">
             <div class="row  info">
                 <input class=" texto form-control mb-2" type="text" name="nombre" placeholder="Nombre" [(ngModel)]="nombre">
                 <label class="control-label" for="desde">Realizado: </label><input class="fecha form-control" type="date" name="desde"  [(ngModel)]="fecharealizacion">

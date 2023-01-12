@@ -19,6 +19,7 @@ export class HardsoftkillscontentComponent implements OnInit {
 
   constructor(private servicio:HardsoftskillsService, private autentiservice:AutenticauserService) {
     this.estadologueado = false;
+    
   }
 
   numer: string = "";
@@ -27,6 +28,9 @@ export class HardsoftkillscontentComponent implements OnInit {
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
       this.estadologueado = estado;
+      if(!this.estadologueado){
+        this.desactivarEdicion();
+      }
     });
 
     this.servicio.getHardsoftskills().subscribe((resp:HardSoftSkillsModel[])=>{
@@ -48,6 +52,13 @@ export class HardsoftkillscontentComponent implements OnInit {
     });
     $('#circle'+indice).val(this.porcenvalue).trigger('change');
     return {'background-color':'#FFFFFF'};
+  }
+
+  desactivarEdicion(){
+    for(var i = 0; i <=5;i++){
+      $('#contenedorA'+i).css({'display':'block'});
+      $('#contenedorB'+i).css({'display':'none'});
+    }
   }
 
   activarEdicion(indice:number){

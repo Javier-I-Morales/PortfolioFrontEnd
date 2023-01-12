@@ -28,6 +28,10 @@ export class ProyectoscontentComponent implements OnInit {
   fecharealizacion:Date = new Date;
   descripcion: string ="";
   link:string ="";
+  linkdos:string ="";
+
+  pathpurouno : string = "";
+  pathpurodos : string = "";
 
   constructor(private servicio:ProyectoService, private autentiservice : AutenticauserService) { 
     this.estadologueado = false;
@@ -36,6 +40,10 @@ export class ProyectoscontentComponent implements OnInit {
   ngOnInit(): void {
     this.autentiservice.conocerEstadoSesion().subscribe(estado =>{
       this.estadologueado = estado;
+      if(!this.estadologueado){
+        this.estado = true;
+        this.desactivarEdicion();
+      }
     });
 
     this.servicio.getProyectos().subscribe((resp:ProyectoModels[])=>{
@@ -50,6 +58,12 @@ export class ProyectoscontentComponent implements OnInit {
     });
   }
 
+  desactivarEdicion(){
+    for(var i = 0; i <=5;i++){
+      this.modificaInput(i);
+    }
+  }
+
 
   color(){
 
@@ -61,9 +75,9 @@ export class ProyectoscontentComponent implements OnInit {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
-  imagen(numI : string, numII : string){
+  imagen(path : string){
     return {
-      'background-image': 'url(/assets/images/proyecto/'+numI+'/'+numII+'.jpg)',
+      'background-image': 'url('+path+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
@@ -78,14 +92,14 @@ export class ProyectoscontentComponent implements OnInit {
   }
   modificaInput(i:number){
     if(this.estado){
-      $(".descripcion"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".nombre"+i).css({'background-color': '#FFFFFF','border': 'none' })
-      $(".fecharealizacion"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".descripcionpro"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".nombrepro"+i).css({'background-color': '#FFFFFF','border': 'none' })
+      $(".fecharealizacionpro"+i).css({'background-color': '#FFFFFF','border': 'none' })
       $(".g"+i).css({'opacity': 0.5, 'cursor':'default', 'pointer-events': 'none' })
     }else{
-      $(".descripcion"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".nombre"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
-      $(".fecharealizacion"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".descripcionpro"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".nombrepro"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
+      $(".fecharealizacionpro"+i).css({'background-color': '#ffffef','border': 'solid 1px black' })
       $(".g"+i).css({'opacity': 1, 'cursor':'pointer', 'pointer-events': 'all' })
     }
   }
@@ -101,20 +115,41 @@ export class ProyectoscontentComponent implements OnInit {
     return fecha; 
   }
 
+
   guardarDatos(i:number){
 
-    this.id = $(".id"+i).val();
-    this.descripcion = $(".descripcion"+i).val();
-    this.fecharealizacion = this.traefecha($(".fecharealizacion"+i).val());
-    this.nombre = $(".nombre"+i).val();
-    this.link = $(".imagen"+i).val();
+    this.id = $(".idpro"+i).val();
+    this.descripcion = $(".descripcionpro"+i).val();
+    this.fecharealizacion = this.traefecha($(".fecharealizacionpro"+i).val());
+    this.nombre = $(".nombrepro"+i).val();
+    this.link = $(".pathpurouno"+i).val();
+    this.linkdos = $(".pathpurodos"+i).val();
+
+    if(this.link.length > 1){
+      let pathUnSplit = this.link.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.link = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.link = $(".imagenprouno"+i).val();
+    }
+
+    if(this.linkdos.length > 1){
+      let pathUnSplit = this.linkdos.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.linkdos = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.linkdos = $(".imagenprodos"+i).val();
+    }
+
+
 
     let proyecto : ProyectoModels = new ProyectoModels(
       this.id,
       this.nombre,
       this.fecharealizacion,
       this.link,
-      this.descripcion
+      this.descripcion,
+      this.linkdos,
       );
 
     this.servicio.UpdateProyecto(proyecto).subscribe(data =>{
@@ -123,6 +158,7 @@ export class ProyectoscontentComponent implements OnInit {
       this.id = 0;
       this.modificaInput(i);
       console.log("Datos guardados.")
+      this.ngOnInit();
     });
   }
 
@@ -135,8 +171,27 @@ export class ProyectoscontentComponent implements OnInit {
   }
 
   guardarNuevosDatos(){
-    let num = (this.proyectos.length + 1).toString();
-    let proyecto = new ProyectoModels(this.id , this.nombre, this.fecharealizacion, num, this.descripcion );
+    //let num = (this.proyectos.length + 1).toString();
+
+    if(this.pathpurouno.length > 1){
+      let pathUnSplit = this.pathpurouno.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.link = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.link = "";
+    }
+    if(this.pathpurodos.length > 1){
+      let pathUnSplit = this.pathpurodos.split('/d/');
+      let pathDosSplit = pathUnSplit[1].split("/view");
+      this.linkdos = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
+    }else{
+      this.linkdos= "";
+    }
+
+
+
+
+    let proyecto = new ProyectoModels(this.id , this.nombre, this.fecharealizacion, this.link, this.descripcion, this.linkdos );
     this.servicio.PostProyecto(proyecto).subscribe(data =>{
       this.ngOnInit();
     });
