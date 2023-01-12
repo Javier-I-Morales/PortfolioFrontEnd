@@ -8,15 +8,15 @@ import { ProyectoModels } from '../models/proyecto.models';
 })
 export class ProyectoService {
   
-  private url="http://localhost:8080/traeproyectos";
-  private urlput="http://localhost:8080/actualizaproyecto";
-  private urlpost="http://localhost:8080/creaproyecto";
-  private urldel="http://localhost:8080/eliminaproyectoid/";
+  // private url="http://localhost:8080/traeproyectos";
+  // private urlput="http://localhost:8080/actualizaproyecto";
+  // private urlpost="http://localhost:8080/creaproyecto";
+  // private urldel="http://localhost:8080/eliminaproyectoid/";
 
-  // private url="https://portfoliowebmoralesjavierignacio.onrender.com/traeproyectos";
-  // private urlput="https://portfoliowebmoralesjavierignacio.onrender.com/actualizaproyecto";
-  // private urlpost="https://portfoliowebmoralesjavierignacio.onrender.com/creaproyecto";
-  // private urldel="https://portfoliowebmoralesjavierignacio.onrender.com/eliminaproyectoid/";
+  private url="https://portfoliowebmoralesjavierignacio.onrender.com/traeproyectos";
+  private urlput="https://portfoliowebmoralesjavierignacio.onrender.com/actualizaproyecto";
+  private urlpost="https://portfoliowebmoralesjavierignacio.onrender.com/creaproyecto";
+  private urldel="https://portfoliowebmoralesjavierignacio.onrender.com/eliminaproyectoid/";
 
   constructor(private http:HttpClient) {}
 

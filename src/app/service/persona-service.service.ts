@@ -8,11 +8,11 @@ import { PersonaModel } from '../models/persona.model';
 })
 export class PersonaServiceService {
   
-  urlget="http://localhost:8080/traepersona";
-  urlput="http://localhost:8080/actualizaPersona";
+  // urlget="http://localhost:8080/traepersona";
+  // urlput="http://localhost:8080/actualizaPersona";
 
-  // urlget="https://portfoliowebmoralesjavierignacio.onrender.com/traepersona";
-  // urlput="https://portfoliowebmoralesjavierignacio.onrender.com/actualizaPersona";
+  urlget="https://portfoliowebmoralesjavierignacio.onrender.com/traepersona";
+  urlput="https://portfoliowebmoralesjavierignacio.onrender.com/actualizaPersona";
 
   constructor(private http:HttpClient) {}
 

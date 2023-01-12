@@ -8,15 +8,15 @@ import { ExperienciaModel } from '../models/experiencia.models';
 })
 export class ExperienciaServiceService {
   
-  private urlget = "http://localhost:8080/traeexperiencia";
-  private urlput = "http://localhost:8080/actualizaexperiencia";
-  private urlpost = "http://localhost:8080/creaexperiencia";
-  private urldel = "http://localhost:8080/eliminaexperienciaid/";
+  // private urlget = "http://localhost:8080/traeexperiencia";
+  // private urlput = "http://localhost:8080/actualizaexperiencia";
+  // private urlpost = "http://localhost:8080/creaexperiencia";
+  // private urldel = "http://localhost:8080/eliminaexperienciaid/";
 
-  // private urlget = "https://portfoliowebmoralesjavierignacio.onrender.com/traeexperiencia";
-  // private urlput = "https://portfoliowebmoralesjavierignacio.onrender.com/actualizaexperiencia";
-  // private urlpost = "https://portfoliowebmoralesjavierignacio.onrender.com/creaexperiencia";
-  // private urldel = "https://portfoliowebmoralesjavierignacio.onrender.com/eliminaexperienciaid/";
+  private urlget = "https://portfoliowebmoralesjavierignacio.onrender.com/traeexperiencia";
+  private urlput = "https://portfoliowebmoralesjavierignacio.onrender.com/actualizaexperiencia";
+  private urlpost = "https://portfoliowebmoralesjavierignacio.onrender.com/creaexperiencia";
+  private urldel = "https://portfoliowebmoralesjavierignacio.onrender.com/eliminaexperienciaid/";
 
   constructor( private http: HttpClient) { }
 
