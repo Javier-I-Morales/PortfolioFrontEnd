@@ -37,7 +37,7 @@ export class AutenticauserService {
       sessionStorage.setItem('currentUser',JSON.stringify(data));
       //sessionStorage.setItem('estado',JSON.stringify(data))
       //console.log("el estado es"+sessionStorage.getItem('estado'))
-      if(data == "0"){
+      if(data == "1"){
         this.sesionActiva = true;
       }
       //this.sesionActiva = true;
