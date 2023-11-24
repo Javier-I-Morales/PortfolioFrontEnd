@@ -15,10 +15,10 @@ export class AutenticauserService {
   private sesionActiva: boolean;
   private sesionActiva$ : Subject<boolean>;
   private sesionActivaB : BehaviorSubject<boolean>;
-  
+
   currentUserSubject:BehaviorSubject<any>;
 
-  constructor(private http:HttpClient) { 
+  constructor(private http:HttpClient) {
 
     this.sesionActiva = false;
     this.sesionActiva$ = new Subject<boolean>();
@@ -34,10 +34,13 @@ export class AutenticauserService {
   {
     console.log("buscando datos de usuario en servidor.")
     return this.http.get<any>(this.urlaut+email+"/"+pass).pipe(map(data =>{
-      sessionStorage.setItem('currentUser',JSON.stringify(data)),
+      sessionStorage.setItem('currentUser',JSON.stringify(data));
       //sessionStorage.setItem('estado',JSON.stringify(data))
       //console.log("el estado es"+sessionStorage.getItem('estado'))
-      this.sesionActiva = true;
+      if(data == "0"){
+        this.sesionActiva = true;
+      }
+      //this.sesionActiva = true;
       this.sesionActiva$.next(this.sesionActiva);
       this.sesionActivaB.next(this.sesionActiva);
       return data;
