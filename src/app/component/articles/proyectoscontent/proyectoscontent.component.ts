@@ -33,7 +33,7 @@ export class ProyectoscontentComponent implements OnInit {
   pathpurouno : string = "";
   pathpurodos : string = "";
 
-  constructor(private servicio:ProyectoService, private autentiservice : AutenticauserService) { 
+  constructor(private servicio:ProyectoService, private autentiservice : AutenticauserService) {
     this.estadologueado = false;
   }
 
@@ -72,7 +72,7 @@ export class ProyectoscontentComponent implements OnInit {
   }
 
   obtenerfecha(fecha: Date) {
-    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
+    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso de desarrollo.";
   }
 
   imagen(path : string){
@@ -112,7 +112,7 @@ export class ProyectoscontentComponent implements OnInit {
     let mes = parseInt(cadena[1])-1;
     let ano = parseInt(cadena[2]);
     let fecha = new Date(ano, mes, dia);
-    return fecha; 
+    return fecha;
   }
 
 

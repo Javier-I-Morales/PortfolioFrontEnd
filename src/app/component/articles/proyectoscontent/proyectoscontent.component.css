@@ -9,14 +9,15 @@
     display: block;
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
-    font-weight:bolder;
+    font-weight:900;
     color: brown;
 }
 
 .descripcion{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight:400;
-    color: brown;
+    color: #3F3F3F;
+    font-size: calc(8px + 1vh + 1vw);
     text-align: justify;
     padding: 0;
     resize: none;

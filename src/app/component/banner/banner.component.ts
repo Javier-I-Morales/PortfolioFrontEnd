@@ -10,7 +10,8 @@ import { AutenticauserService } from 'src/app/service/autenticauser.service';
   styleUrls: ['./banner.component.css']
 })
 export class BannerComponent implements OnInit {
-
+  haydatos:boolean = false;
+  errorserver:boolean = true;
   estadologueado:boolean;
   estado: boolean = true;
 
@@ -46,7 +47,13 @@ export class BannerComponent implements OnInit {
       this.descripcion1 = this.persona.profesion.split(",")[0];
       this.descripcion2 = this.persona.profesion.split(",")[1];
       this.descripcion3 = this.persona.profesion.split(",")[2];
-      this.imagenperfil = this.persona.imagen; 
+      this.imagenperfil = this.persona.imagen;
+
+      this.haydatos = true;
+      this.errorserver = true;
+    },error=>{
+      this.haydatos = true;
+      this.errorserver = false;
     });
 
   }
@@ -61,7 +68,7 @@ export class BannerComponent implements OnInit {
     'border-radius': '50%'
     }
   }
-  
+
   activarEdicion(){
     this.estado = false;
     this.puedeguardar = true;
@@ -73,7 +80,7 @@ export class BannerComponent implements OnInit {
     }else{
       return {'border':'solid 1px black','background-color':'#ffffef'}
     }
-    
+
   }
   lapizEditar(){
     return {'background-image':'/assets/images/botones/editar.png'};
@@ -96,7 +103,7 @@ export class BannerComponent implements OnInit {
       this.persona.imagen = "https://drive.google.com/uc?export=view&id="+pathDosSplit[0];
       console.log(this.persona.imagen);
     }
-    
+
 
     this.servicio.UpdatePersona(this.persona).subscribe(data =>{
       console.log(data);
@@ -107,10 +114,10 @@ export class BannerComponent implements OnInit {
       this.ngOnInit();
     });
 
-    
+
   }
 
 
-  
+
 
 }

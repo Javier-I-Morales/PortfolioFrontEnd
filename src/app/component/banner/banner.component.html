@@ -13,6 +13,12 @@
         </div>
         <div class="row m-0">
             <div class="col-lg-4 p-2" >
+              <div *ngIf="!haydatos">
+                <h3>Aguarde un momento, se estan buscando datos en el servidor</h3>
+              </div>
+              <div *ngIf="!errorserver">
+                <h3>Hubo un problema con el servidor, Intentelo nuevamente.</h3>
+              </div>
                 <input id="nombrePerfil" class="" type="text" [(ngModel)]="nombre" [readonly]="estado" [ngStyle]="modificaInput()">
             </div>
             <div class="col-lg-8 text-center p-2">
@@ -25,6 +31,6 @@
             <img id="editar" src="/assets/images/botones/editar.png" title="editar" alt="" width="25px" height="25px" (click)="activarEdicion()">
             <img id="guardar" src="/assets/images/botones/guardar.png" title="guardar" alt="" width="25px" height="25px" (click)="guardarDatos()" [ngStyle]="puedeGuardar()">
         </div>
-        
+
     </div>
 </div>
