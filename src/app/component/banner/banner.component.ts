@@ -41,21 +41,40 @@ export class BannerComponent implements OnInit {
       }
     });
 
-    this.servicio.GetPersona().subscribe((resp:PersonaModel)=>{
-      this.persona = resp;
-      this.nombre = this.persona.apellido.trim() + " " + this.persona.nombre.trim();
-      this.descripcion1 = this.persona.profesion.split(",")[0];
-      this.descripcion2 = this.persona.profesion.split(",")[1];
-      this.descripcion3 = this.persona.profesion.split(",")[2];
-      this.imagenperfil = this.persona.imagen;
+    // this.servicio.GetPersona().subscribe((resp:PersonaModel)=>{
+    //   this.persona = resp;
+    //   this.nombre = this.persona.apellido.trim() + " " + this.persona.nombre.trim();
+    //   this.descripcion1 = this.persona.profesion.split(",")[0];
+    //   this.descripcion2 = this.persona.profesion.split(",")[1];
+    //   this.descripcion3 = this.persona.profesion.split(",")[2];
+    //   this.imagenperfil = this.persona.imagen;
 
-      this.haydatos = true;
-      this.errorserver = true;
-    },error=>{
-      this.haydatos = true;
-      this.errorserver = false;
+    //   this.haydatos = true;
+    //   this.errorserver = true;
+    // },error=>{
+    //   this.haydatos = true;
+    //   this.errorserver = false;
+    // });
+
+    this.servicio.GetPersona().subscribe({
+
+      next: (resp:PersonaModel)=> {this.persona = resp;
+        this.nombre = this.persona.apellido.trim() + " " + this.persona.nombre.trim();
+        this.descripcion1 = this.persona.profesion.split(",")[0];
+        this.descripcion2 = this.persona.profesion.split(",")[1];
+        this.descripcion3 = this.persona.profesion.split(",")[2];
+        this.imagenperfil = this.persona.imagen;
+        this.haydatos = true;
+        this.errorserver = true;
+
+      },
+      error: (e)=>{
+           this.haydatos = true;
+           this.errorserver = false;
+           console.log(e)
+      },
+      complete:()=> console.log("Completado.")
     });
-
   }
 
   imagenPerfil(){
