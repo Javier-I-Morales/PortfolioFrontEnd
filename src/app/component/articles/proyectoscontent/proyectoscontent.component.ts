@@ -82,6 +82,7 @@ export class ProyectoscontentComponent implements OnInit {
       'background-repeat': 'no-repeat',
       'height':'200px',
       'border-radius':'20px',
+      'transition':'3s'
     };
   }
 

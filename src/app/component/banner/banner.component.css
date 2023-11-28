@@ -27,12 +27,12 @@ input{
     position: absolute;
     display: inline-flex;
     bottom: 120px;
-    left:170px;
+    left:150px;
 }
 #perfilpath{
     position: absolute;
     top: 0px;
-    left:6vw;
+    left:5vw;
 }
 /* #imagenPerfil{
     width: 100px;
@@ -95,7 +95,7 @@ input{
 
     #perfil{
         bottom: 110px;
-        left:140px;
+        left:130px;
     }
 }
 @media screen and (max-width:1199px){
@@ -104,7 +104,7 @@ input{
     }
     #perfil{
         bottom: 100px;
-        left:120px;
+        left:110px;
     }
 }
 @media screen and (max-width:991px){

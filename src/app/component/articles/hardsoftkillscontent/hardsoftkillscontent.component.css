@@ -3,10 +3,10 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     column-gap: 20px;
-    row-gap: 10px; 
+    row-gap: 10px;
     justify-items: center;
     padding-left: 3rem;
-    padding-right: 3rem; 
+    padding-right: 3rem;
     padding-bottom: 20px;
 }
 
@@ -24,6 +24,7 @@
     overflow: hidden;
     border-radius: 12px;
     padding-top: 2px;
+    box-shadow: 3px 3px 3px #5a5a5a;
 }
 .texto{
     position:absolute;
@@ -32,7 +33,7 @@
     right: 0px;
     font-size: calc(7px + 0.6vw);
     text-align: center;
-} 
+}
 #guardarsk{
     position: absolute;
     top: 0px;
@@ -41,10 +42,10 @@
 @media screen and (max-width:992px){
     #contendorgrid{
         grid-template-columns: 1fr 1fr;
-        column-gap: 5px; 
-        row-gap: 5px; 
+        column-gap: 5px;
+        row-gap: 5px;
         padding-left: 1rem;
-        padding-right: 1rem; 
+        padding-right: 1rem;
     }
 }
 

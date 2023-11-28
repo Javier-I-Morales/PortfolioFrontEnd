@@ -10,7 +10,10 @@
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight:900;
-    color: brown;
+    color: #FFFFFF;
+    background-color: #000000;
+    border-radius: 15px;
+    text-align: center;
 }
 
 .descripcion{
@@ -29,9 +32,12 @@
     margin: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-
+.imagen:hover{
+  height: 600px;
+}
 .cuadro{
     position: relative;
+    box-shadow: 3px 3px 3px #5a5a5a;
 }
 .texto{
     text-align: start;

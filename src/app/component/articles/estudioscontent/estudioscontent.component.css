@@ -29,6 +29,7 @@
 
 .cuadro{
     position: relative;
+    box-shadow: 3px 3px 3px #5a5a5a;
 }
 .paraNuevosEdu{
     position:relative;
