@@ -10,7 +10,7 @@ input{
 }
 
 #imagenBanner{
-    
+
     position: relative;
     width: 100%;
     min-height: 500px;
@@ -70,7 +70,7 @@ input{
     width: 100%;
     display: block;
     text-align: center;
-    color: brown;
+    color: #3F3F3F;
 }
 #nombrePerfil{
     width: 100%;

@@ -78,7 +78,7 @@ export class BannerComponent implements OnInit {
   }
 
   imagenPerfil(){
-    return {'width': '100px', 'height': '100px',
+    return {'width': '150px', 'height': '150px',
     'background-position': 'center',
     'background-image': 'url('+this.imagenperfil+')',
     //'background-image': 'url("/assets/images/banner/fotoperfil.jpg")',

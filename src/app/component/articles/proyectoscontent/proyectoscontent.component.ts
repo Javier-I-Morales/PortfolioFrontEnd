@@ -72,7 +72,7 @@ export class ProyectoscontentComponent implements OnInit {
   }
 
   obtenerfecha(fecha: Date) {
-    return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso de desarrollo.";
+    return fecha != null ? fecha.toLocaleDateString(): "Aún en desarrollo.";
   }
 
   imagen(path : string){
