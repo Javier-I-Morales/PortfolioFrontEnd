@@ -22,7 +22,7 @@
                 <div class="texto col-12 col-lg-8">
                     <input style="background-color: #FFFFFF; border: none;display: block;" class="titulo" type="text" [value]="e.nombre" [readonly]="estado" [ngClass]="'nombrepro'+i.toString()">
                     <input style="background-color: #FFFFFF; border: none" class="fecha texto" type="text" [value]="obtenerfecha(e.fecharealizacion)" [readonly]="estado" [ngClass]="'fecharealizacionpro'+i.toString()">
-                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion titulo form-control texto" name="" id="" [value]="e.descripcion" [readonly]="estado" [ngClass]="'descripcionpro'+i.toString()"></textarea>
+                    <textarea style="background-color: #FFFFFF; border: none" class="descripcion form-control texto" name="" id="" [value]="e.descripcion" [readonly]="estado" [ngClass]="'descripcionpro'+i.toString()"></textarea>
                 </div>
             </div>
             <div *ngIf="estadologueado">

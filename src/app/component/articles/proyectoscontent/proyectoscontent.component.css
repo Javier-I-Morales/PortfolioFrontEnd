@@ -9,16 +9,16 @@
     width: 100%;
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight:900;
-    color:brown;
+    color:#e12222;
     text-align: center;
-    font-size: 18px;
+    font-size: calc(8px + 1vh + 1vw);
 }
 
 .descripcion{
     font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     font-weight:400;
     color: #3F3F3F;
-    font-size: calc(8px + 1vh + 1vw);
+    font-size: calc(6px + 1vh + 1vw);
     text-align: justify;
     padding: 0;
     resize: none;
