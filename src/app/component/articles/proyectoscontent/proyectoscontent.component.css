@@ -30,9 +30,9 @@
     margin: 5px;
     box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
 }
-.imagen:hover{
+/* .imagen:hover{
   height: 600px;
-}
+} */
 .cuadro{
     position: relative;
     box-shadow: 3px 3px 3px #5a5a5a;

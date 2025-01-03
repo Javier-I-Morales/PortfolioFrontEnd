@@ -97,7 +97,6 @@ export class ProyectoscontentComponent implements OnInit {
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
-      'width': '200px',
       'border-radius':'20px',
       'object-fit': 'cover'
     };
