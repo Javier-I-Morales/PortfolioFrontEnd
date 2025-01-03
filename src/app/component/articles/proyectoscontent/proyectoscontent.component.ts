@@ -82,16 +82,24 @@ export class ProyectoscontentComponent implements OnInit {
     return "/assets/images/experiencia/"+num+"/2.jpg";
   }
 
-  imagen(path : string){
+  // imagen(path : string){
+  //   return {
+  //     'background-image': 'url('+path+')',
+  //     'background-size':'100% 100%',
+  //     'background-repeat': 'no-repeat',
+  //     'height':'200px',
+  //     'border-radius':'20px',
+  //   };
+  // }
+
+  imagen(){
     return {
-      //'background-image': 'url('+path+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
       'border-radius':'20px',
     };
   }
-
 
   activarEdicion(i:number){
     this.estado = false;

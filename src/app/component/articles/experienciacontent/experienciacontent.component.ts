@@ -80,9 +80,18 @@ export class ExperienciacontentComponent implements OnInit {
     return "/assets/images/experiencia/"+num+".jpg";
   }
 
-  imagen(pathimagen:string){
+  // imagen(pathimagen:string){
+  //   return {
+  //     //'background-image': 'url('+pathimagen+')',
+  //     'background-size':'100% 100%',
+  //     'background-repeat': 'no-repeat',
+  //     'height':'200px',
+  //     'border-radius':'20px',
+  //   };
+  // }
+
+  imagen(){
     return {
-      //'background-image': 'url('+pathimagen+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
