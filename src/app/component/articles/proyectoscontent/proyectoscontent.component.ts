@@ -79,7 +79,7 @@ export class ProyectoscontentComponent implements OnInit {
     return "/assets/images/proyecto/"+num+"/1.jpg";
   }
   ruta2(num :string){
-    return "/assets/images/experiencia/"+num+"/2.jpg";
+    return "/assets/images/proyecto/"+num+"/2.jpg";
   }
 
   // imagen(path : string){
@@ -97,7 +97,9 @@ export class ProyectoscontentComponent implements OnInit {
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
+      'width': '200px',
       'border-radius':'20px',
+      'object-fit': 'cover'
     };
   }
 
