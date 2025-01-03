@@ -3,20 +3,20 @@
     <div *ngIf="estadologueado">
         <img id="nuevo" title="nuevo" src="/assets/images/botones/nuevo.png" style="cursor:pointer;" alt="" width="25px" height="25px" (click)="nuevaExperiencia(true)">
     </div>
-    
+
     <div *ngFor="let e of experiencias; let i = index" >
         <div  class="cuadro border border-2 rounded-5 mx-auto mb-3" [ngStyle]="color()" [ngClass]="i.toString()">
             <div class="row p-3 info">
                 <div class="">
-                    <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"></div>
+                    <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"><img [src]="ruta(i.toString())" alt="Imagen"></div>
                     <div id="perfilpath" *ngIf="!estado">
                         <input type="text" id="pathimagenexpe" placeholder="Ingrese path de drive" [(ngModel)]="pathpuro" class="form-control">
                     </div>
-                    
+
                 </div>
                 <input style="display:none"  type="text" [(ngModel)]="e.id" [ngClass]="'idex'+i.toString()">
                 <input style="display:none" type="text" [(ngModel)]="e.numeroimagen" [ngClass]="'imagenex'+i.toString()">
-                
+
                 <div class=" texto">
                     <input style="background-color: #FFFFFF; border: none" class="empresa texto" type="text" [value]="e.empresa" [readonly]="estado" [ngClass]="'empresaex'+i.toString()" >
                     <input style="background-color: #FFFFFF; border: none" class="puesto texto" type="text" [value]="e.puesto" [readonly]="estado" [ngClass]="'puestoex'+i.toString()">
@@ -46,7 +46,7 @@
                     <label class="control-label" for="desde">Desde: </label><input class="fecha form-control" type="date" name="desde"  [(ngModel)]="fechainicio">
                 <label class="control-label" for="hasta">Hasta: </label><input class="fecha form-control" type="date" name="hasta" [(ngModel)]="fechafin">
                 </div>
-                <textarea class="form-control tarea texto mt-2" name="tarea" placeholder="Tareas" style="resize:none" [(ngModel)]="tarea"></textarea> 
+                <textarea class="form-control tarea texto mt-2" name="tarea" placeholder="Tareas" style="resize:none" [(ngModel)]="tarea"></textarea>
             </div>
             <img id="guardar" title="guardar" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px" (click)="guardarNuevosDatos()">
         </div>

@@ -48,14 +48,14 @@ export class EstudioscontentComponent implements OnInit {
     this.servicio.GetEducacion().subscribe((resp:EducacionModel[])=>{
       this.estudios = resp;
       this.estudios.forEach(est => {
-        
+
         est.fechainicio= new Date(est.fechainicio);
         if(est.fechafin != null){
           est.fechafin= new Date(est.fechafin);
         }
       });
     })
-    
+
   }
 
   desactivarEdicion(){
@@ -68,13 +68,13 @@ export class EstudioscontentComponent implements OnInit {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
-  // ruta(num :string){
-  //   return "/assets/images/estudio/"+num+".jpg";
-  // }
+  ruta(num :string){
+    return "/assets/images/estudio/"+num+".jpg";
+  }
 
   imagen(pathimagen : string){
     return {
-      'background-image': 'url('+pathimagen+')',
+      //'background-image': 'url('+pathimagen+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
@@ -117,7 +117,7 @@ export class EstudioscontentComponent implements OnInit {
     let mes = parseInt(cadena[1])-1;
     let ano = parseInt(cadena[2]);
     let fecha = new Date(ano, mes, dia);
-    return fecha; 
+    return fecha;
   }
 
   guardarDatos(i:number){
@@ -174,7 +174,7 @@ export class EstudioscontentComponent implements OnInit {
     }else{
       this.numeroimagen = "";
     }
-    
+
     let educacion = new EducacionModel(this.id , this.instituto, this.fechainicio, this.fechafin, this.titulo, this.numeroimagen);
     this.servicio.PostEducacion(educacion).subscribe(data =>{
       this.ngOnInit();

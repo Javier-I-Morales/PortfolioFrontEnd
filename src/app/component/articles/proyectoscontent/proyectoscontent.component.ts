@@ -75,9 +75,16 @@ export class ProyectoscontentComponent implements OnInit {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en desarrollo.";
   }
 
+  ruta1(num :string){
+    return "/assets/images/proyecto/"+num+"/1.jpg";
+  }
+  ruta2(num :string){
+    return "/assets/images/experiencia/"+num+"/2.jpg";
+  }
+
   imagen(path : string){
     return {
-      'background-image': 'url('+path+')',
+      //'background-image': 'url('+path+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',

@@ -23,7 +23,7 @@ export class ExperienciacontentComponent implements OnInit {
 
   estado: boolean = true;
   puedeguardar : boolean = false;
-  
+
   id:number = 0;
   numeroimagen: string ="";
   empresa:string= "";
@@ -36,7 +36,7 @@ export class ExperienciacontentComponent implements OnInit {
 
   pipe = new DatePipe('en-US');
 
-  constructor(private servicio : ExperienciaServiceService, 
+  constructor(private servicio : ExperienciaServiceService,
     private autentiservice : AutenticauserService,
     private http : HttpClient) {
     this.estadologueado = false;
@@ -63,7 +63,7 @@ export class ExperienciacontentComponent implements OnInit {
       });
     });
 
-    
+
   }
 
   desactivarEdicion(){
@@ -76,9 +76,13 @@ export class ExperienciacontentComponent implements OnInit {
     return fecha != null ? fecha.toLocaleDateString(): "Aún en proceso.";
   }
 
+  ruta(num :string){
+    return "/assets/images/experiencia/"+num+".jpg";
+  }
+
   imagen(pathimagen:string){
     return {
-      'background-image': 'url('+pathimagen+')',
+      //'background-image': 'url('+pathimagen+')',
       'background-size':'100% 100%',
       'background-repeat': 'no-repeat',
       'height':'200px',
@@ -119,7 +123,7 @@ export class ExperienciacontentComponent implements OnInit {
     let mes = parseInt(cadena[1])-1;
     let ano = parseInt(cadena[2]);
     let fecha = new Date(ano, mes, dia);
-    return fecha; 
+    return fecha;
   }
   guardarDatos(i:number){
 
@@ -137,7 +141,7 @@ export class ExperienciacontentComponent implements OnInit {
     }else{
       this.numeroimagen = $(".imagenex"+i).val();
     }
-    
+
 
     let experiencia : ExperienciaModel = new ExperienciaModel(
       this.id,

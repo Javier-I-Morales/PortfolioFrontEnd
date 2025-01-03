@@ -4,18 +4,18 @@
     <div style="display: contents;" *ngIf="estadologueado">
         <img id="nuevo" title="nuevo" src="/assets/images/botones/nuevo.png" style="cursor:pointer;" alt="" width="25px" height="25px" (click)="nuevaEducacion(true)">
     </div>
-    
+
     <div *ngFor="let e of estudios; let i = index">
         <div class="cuadro border border-2 rounded-5 mx-auto mb-3" [ngStyle]="color()">
             <div class="info row p-3">
                 <div class="col ">
-                    <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"></div>
+                    <div class="imagen" [ngStyle]="imagen(e.numeroimagen)"><img [src]="ruta(i.toString())" alt="Imagen"></div>
                     <div id="perfilpath" *ngIf="!estado">
                         <input type="text" id="pathimagenest" placeholder="Ingrese path de drive"  class="form-control" [ngClass]="'pathpuroes'+i.toString()">
                     </div>
                 </div>
-                <input style="display:none"  type="text" [value]="e.id" [ngClass]="'idestu'+i.toString()"> 
-                <input style="display:none" type="text" [value]="e.numeroimagen" [ngClass]="'imagen'+i.toString()"> 
+                <input style="display:none"  type="text" [value]="e.id" [ngClass]="'idestu'+i.toString()">
+                <input style="display:none" type="text" [value]="e.numeroimagen" [ngClass]="'imagen'+i.toString()">
                 <div class="texto col ">
                     <input style="background-color: #FFFFFF; border: none" class="instituto empresa texto" type="text" [(ngModel)]="e.instituto" [readonly]="estado" [ngClass]="'instituto'+i.toString()">
                     <input style="background-color: #FFFFFF; border: none" class="fecha" type="text" [ngModel]="obtenerfecha(e.fechainicio)" [readonly]="estado" [ngClass]="'fechainicioes'+i.toString()">
@@ -29,7 +29,7 @@
                 <img id="eliminar" title="eliminar" src="/assets/images/botones/eliminar.png" style="cursor:pointer;" alt="" width="25px" height="25px"  (click)="eliminar(e.id)">
             </div>
         </div>
-        
+
     </div>
     <div class="paraNuevosEdu" style="display: none;">
         <div class=" border border-2 rounded-5 mx-auto py-3 px-5 mb-5" style="position:relative">
@@ -38,7 +38,7 @@
                 <input class=" texto form-control mb-2" type="text" name="nombre" placeholder="Instituto" [(ngModel)]="instituto">
                 <label class="control-label" for="desde">Desde: </label><input class="fecha form-control" type="date" name="desde"  [(ngModel)]="fechainicio">
                 <label class="control-label" for="hasta">Hasta: </label><input class="fecha form-control" type="date" name="hasta" [(ngModel)]="fechafin">
-                <textarea class="form-control tarea texto mt-2" name="tarea" placeholder="Titulo" style="resize:none" [(ngModel)]="titulo"></textarea> 
+                <textarea class="form-control tarea texto mt-2" name="tarea" placeholder="Titulo" style="resize:none" [(ngModel)]="titulo"></textarea>
             </div>
             <img id="guardar" title="guardar" src="/assets/images/botones/guardar.png" alt="" width="25px" height="25px" (click)="guardarNuevosDatos()">
         </div>
